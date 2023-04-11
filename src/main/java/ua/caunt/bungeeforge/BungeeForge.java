@@ -22,10 +22,7 @@ public class BungeeForge
     private static Logger logger;
 
     @EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
-        logger = event.getModLog();
-        logger.info("loaded " + MODID);
-    }
+    public void preInit(FMLPreInitializationEvent event) { logger = event.getModLog(); }
 
     @EventHandler
     public void init(FMLInitializationEvent event) { }

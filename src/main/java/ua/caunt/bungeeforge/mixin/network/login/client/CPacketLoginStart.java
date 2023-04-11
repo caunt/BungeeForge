@@ -16,12 +16,6 @@ public class CPacketLoginStart {
     @Shadow
     private GameProfile profile;
 
-    /*@Redirect(method = "readPacketData", at = @At(value = "NEW", target = "com/mojang/authlib/GameProfile"))
-    public GameProfile readPacketData(UUID uuid, String name) {
-        return new GameProfile(UUID.fromString("14d8e92c-3384-471a-bd1b-b91d18799758"), "caunt");
-    }*/
-
-
     @Inject(method = "processPacket", at = @At("HEAD"))
     private void processPacket(INetHandlerLoginServer handler, CallbackInfo callbackInfo) {
         NetworkManager networkManager = ((NetHandlerLoginServer) handler).networkManager;

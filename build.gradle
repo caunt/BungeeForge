@@ -50,11 +50,12 @@ configurations {
 dependencies {
     minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2860'
 
-    /*embed('org.spongepowered:mixin:0.8.5') {
+    compile('org.spongepowered:mixin:0.8.5') {
+        exclude module: 'launchwrapper'
         exclude module: 'guava'
         exclude module: 'commons-io'
         exclude module: 'gson'
-    }*/
+    }
 
     compileOnly 'org.spongepowered:mixin:0.8.5:processor'
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
@@ -79,9 +80,7 @@ jar {
                 "Implementation-Version"  : "${version}",
                 "Implementation-Vendor"   : "caunt",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                // "ForceLoadAsMod"          : "true",
-                "TweakClass"              : "org.spongepowered.asm.launch.MixinTweaker",
-                // "TweakOrder"              : "0"
+                "TweakClass"              : "org.spongepowered.asm.launch.MixinTweaker"
         ])
     }
 }
