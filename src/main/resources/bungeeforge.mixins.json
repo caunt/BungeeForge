@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "ua.caunt.bungeeforge.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "bungeeforge.refmap.json",
+  "mixins": [
+    "network.handshake.client.C00Handshake",
+    "network.login.client.CPacketLoginStart",
+    "network.NetHandlerHandshakeTCP"
+  ],
+  "client": [
+  ],
+  "minVersion": "0.7"
+}
