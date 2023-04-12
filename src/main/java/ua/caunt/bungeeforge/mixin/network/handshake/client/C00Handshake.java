@@ -36,7 +36,7 @@ public class C00Handshake {
         String data = buf.readString(Short.MAX_VALUE);
         String[] chunks = data.split("\0");
 
-        if (chunks.length == 2)
+        if (chunks.length <= 2)
             return data;
 
         spoofedUUID = UUIDTypeAdapter.fromString(chunks[2]);
