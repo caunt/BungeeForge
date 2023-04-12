@@ -15,20 +15,13 @@ apply plugin: 'org.spongepowered.mixin'
 
 version = '1.0'
 group = 'ua.caunt.bungeeforge' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'bungeeforge'
+archivesBaseName = 'bungeeforge-1.12.2'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 
 minecraft {
     mappings channel: 'snapshot', version: '20171003-1.12'
     runs {
-        client {
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
-            property 'forge.logging.console.level', 'debug'
-            arg '-torg.spongepowered.asm.launch.MixinTweaker'
-        }
-
         server {
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'debug'
