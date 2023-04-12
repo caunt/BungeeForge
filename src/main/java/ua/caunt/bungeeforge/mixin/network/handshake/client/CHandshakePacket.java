@@ -59,7 +59,7 @@ public class CHandshakePacket {
                 gameProfile.getProperties().put(property.getName(), property);
             });
 
-            Field field = ObfuscationReflectionHelper.findField(ServerHandshakeNetHandler.class, "connection");
+            Field field = ObfuscationReflectionHelper.findField(ServerHandshakeNetHandler.class, "field_147386_b");
             field.setAccessible(true);
 
             BungeeForge.MAP.put((NetworkManager) field.get(handler), gameProfile);

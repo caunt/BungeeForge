@@ -15,7 +15,7 @@ apply plugin: 'org.spongepowered.mixin'
 
 version = '1.0'
 group = 'ua.caunt.bungeeforge' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'bungeeforge'
+archivesBaseName = 'bungeeforge-1.16.5'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(8)
 
