@@ -1,0 +1,16 @@
+[
+{
+  "modid": "bungeeforge",
+  "name": "BungeeForge",
+  "description": "BungeeForge mod.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["caunt"],
+  "credits": "caunt",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
