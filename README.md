@@ -1,6 +1,6 @@
 # BungeeForge
-BungeeForge is Forge mod that implements BungeeCord (legacy) protocol.
-At first it was developed to support Velocity legacy forwarding but it can also work for other proxies. 
+BungeeForge is a Forge mod that implements BungeeCord (legacy) protocol.
+At first it was developed to support Velocity legacy forwarding but it can also work for other Bungee proxies. 
 
 ### Usage:
 - Download the mod into mods/ directory on your server
