@@ -76,6 +76,8 @@ jar {
                 "TweakClass"              : "org.spongepowered.asm.launch.MixinTweaker"
         ])
     }
+
+    archiveName = "${archivesBaseName}.jar"
 }
 
 jar.finalizedBy('reobfJar')
