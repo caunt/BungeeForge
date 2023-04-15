@@ -2,12 +2,15 @@
 BungeeForge is a Forge mod that implements BungeeCord (legacy) protocol.
 At first it was developed to support Velocity legacy forwarding but it can also work for other Bungee proxies. 
 
-### Usage:
+## Usage:
 - Download the mod into mods/ directory on your server
 - Setup Velocity (velocity.toml) option `player-info-forwarding-mode` to `legacy`
 - Configure your Forge server (server.properties) option `online-mode` to `false`
 - Connect through Velocity to your Forge server
 - You should see skins and IP forwarding works
 
-### Other versions
-Other Forge versions can be supported. Submit issue and feel free to ask.
+### WARN: Minecraft 1.13 +
+This modification requires both Proxy and Forge to be compatible. Unfortunately, currently, Forge for Minecraft 1.13 (and newer) is not compatible with proxies due to the lack of a "reset" packet to gracefully reset client registries between server switches. To implement this functionality, there is an available plugin called [Ambassador](https://github.com/adde0109/Ambassador) which was thankfully developed by adde0109. **Install both [BungeeForge](https://github.com/caunt/BungeeForge/releases) and [Ambassador](https://github.com/adde0109/Ambassador/releases) on 1.13+ setups**. For Minecraft 1.12.2 and lower versions, BungeeForge works by itself.
+
+## Other versions
+Other Forge versions can be supported as well. Please feel free to create a Issue and ask.
