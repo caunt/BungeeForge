@@ -32,12 +32,12 @@ public class CPacketLoginStart {
         if (!BungeeForge.MAP.containsKey(networkManager))
             return;
 
-        Tuple<UUID, Property[]> spoofedProfile = BungeeForge.MAP.get(networkManager);
+        Tuple<UUID, Property[]> tuple = BungeeForge.MAP.get(networkManager);
 
-        profile = new GameProfile(spoofedProfile.getFirst(), profile.getName());
+        profile = new GameProfile(tuple.getFirst(), profile.getName());
         PropertyMap properties = profile.getProperties();
 
-        Arrays.stream(spoofedProfile.getSecond()).filter(property -> PROP_PATTERN.matcher(property.getName()).matches()).forEach(property -> {
+        Arrays.stream(tuple.getSecond()).filter(property -> PROP_PATTERN.matcher(property.getName()).matches()).forEach(property -> {
             properties.put(property.getName(), property);
         });
     }
