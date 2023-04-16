@@ -4,8 +4,10 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "bungeeforge.refmap.json",
   "mixins": [
+    "network.NetworkManager",
     "network.handshake.client.C00Handshake",
-    "network.login.client.CPacketLoginStart"
+    "network.login.client.CPacketLoginStart",
+    "server.network.NetHandlerHandshakeTCP"
   ],
   "client": [],
   "minVersion": "0.7"
