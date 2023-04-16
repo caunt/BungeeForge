@@ -1,61 +1,59 @@
 package ua.caunt.bungeeforge.mixin.network.handshake.client;
 
 import com.google.gson.Gson;
-import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import com.mojang.util.UUIDTypeAdapter;
-import net.minecraft.network.NetworkManager;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.network.handshake.IHandshakeNetHandler;
-import net.minecraft.network.handshake.ServerHandshakeNetHandler;
-import net.minecraft.util.Tuple;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
-import net.minecraftforge.fml.network.FMLNetworkConstants;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import ua.caunt.bungeeforge.BungeeForge;
+import ua.caunt.bungeeforge.bridge.network.handshake.client.CHandshakePacketBridge;
 
-import java.lang.reflect.Field;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.UUID;
-import java.util.regex.Pattern;
 
-@Mixin(net.minecraft.network.handshake.client.CHandshakePacket.class)
-public class CHandshakePacket {
-    private UUID spoofedUUID;
-    private Property[] spoofedProfile;
+@Mixin(value = net.minecraft.network.handshake.client.CHandshakePacket.class)
+public class CHandshakePacket implements CHandshakePacketBridge {
+    private UUID spoofedId;
+    private Property[] spoofedProperties;
 
     private static final Gson gson = new Gson();
 
     @Redirect(method = "read", at = @At(value = "INVOKE", target = "Lnet/minecraft/network/PacketBuffer;readUtf(I)Ljava/lang/String;"))
-    private String readUtf(PacketBuffer buf, int length) {
+    private String bungee$readUtf(PacketBuffer buf, int length) {
         String data = buf.readUtf(Short.MAX_VALUE);
         String[] chunks = data.split("\0");
 
         if (chunks.length <= 2)
             return data;
 
-        spoofedUUID = UUIDTypeAdapter.fromString(chunks[2]);
-        spoofedProfile = gson.fromJson(chunks[3], Property[].class);
+        Property[] properties = gson.fromJson(chunks[3], Property[].class);
 
-        return chunks[1] + "\0" + FMLNetworkConstants.NETVERSION + "\0";
+        spoofedId = UUIDTypeAdapter.fromString(chunks[2]);
+        spoofedProperties = Arrays.stream(properties)
+                .filter(packet -> !isFmlMarker(packet))
+                .toArray(Property[]::new);
+
+        return Arrays.stream(properties)
+                .filter(packet -> isFmlMarker(packet))
+                .findFirst()
+                .map(property -> chunks[1] + "\0" + property.getValue().split("\u0001")[1] + "\0")
+                .orElseGet(() -> chunks[1]);
     }
 
-    @Inject(method = "handle", at = @At("HEAD"))
-    private void processPacket(IHandshakeNetHandler handler, CallbackInfo callbackInfo) {
-        try {
-            if (spoofedUUID == null || spoofedProfile == null)
-                return;
+    private static boolean isFmlMarker(Property property)
+    {
+        return Objects.equals(property.getName(), "extraData") && property.getValue().startsWith("\u0001FML");
+    }
 
-            Field field = ObfuscationReflectionHelper.findField(ServerHandshakeNetHandler.class, "field_147386_b");
-            field.setAccessible(true);
+    @Override
+    public UUID bungee$getSpoofedId() {
+        return spoofedId;
+    }
 
-            BungeeForge.MAP.put((NetworkManager) field.get(handler), new Tuple<>(spoofedUUID, spoofedProfile));
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
+    @Override
+    public Property[] bungee$getSpoofedProperties() {
+        return spoofedProperties;
     }
 }

@@ -5,7 +5,9 @@
   "refmap": "bungeeforge.refmap.json",
   "mixins": [
     "network.handshake.client.CHandshakePacket",
-    "network.login.client.CLoginStartPacket"
+    "network.login.client.CLoginStartPacket",
+    "network.handshake.ServerHandshakeNetHandler",
+    "network.NetworkManager"
   ],
   "client": [],
   "minVersion": "0.7"
