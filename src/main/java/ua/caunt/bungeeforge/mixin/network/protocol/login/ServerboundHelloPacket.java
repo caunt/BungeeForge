@@ -25,7 +25,7 @@ public class ServerboundHelloPacket {
     private static final Pattern PROP_PATTERN = Pattern.compile("\\w{0,16}");
 
     @Inject(method = "handle(Lnet/minecraft/network/protocol/login/ServerLoginPacketListener;)V", at = @At("HEAD"))
-    public void bungee$head(ServerLoginPacketListener p_134848_, CallbackInfo ci) {
+    public void bungee$handle(ServerLoginPacketListener p_134848_, CallbackInfo ci) {
         ConnectionBridge connectionBridge = (ConnectionBridge)p_134848_.getConnection();
 
         if (!connectionBridge.bungee$hasSpoofedProfile())

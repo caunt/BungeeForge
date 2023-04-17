@@ -21,7 +21,7 @@ public class ClientIntentionPacket implements ClientIntentionPacketBridge {
     private static final Gson gson = new Gson();
 
     @Redirect(method = "<init>(Lnet/minecraft/network/FriendlyByteBuf;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/network/FriendlyByteBuf;readUtf(I)Ljava/lang/String;"))
-    private String readUtf(FriendlyByteBuf buf, int length) {
+    private String bungee$readUtf(FriendlyByteBuf buf, int length) {
         var data = buf.readUtf(Short.MAX_VALUE);
         var chunks = data.split("\0");
 
