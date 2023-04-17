@@ -6,7 +6,6 @@
   "mixins": [
     "network.Connection",
     "network.protocol.handshake.ClientIntentionPacket",
-    "network.protocol.login.ServerboundHelloPacket",
     "server.network.ServerGamePacketListenerImpl",
     "server.network.ServerHandshakePacketListenerImpl",
     "server.network.ServerLoginPacketListenerImpl"
