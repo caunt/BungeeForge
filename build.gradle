@@ -13,15 +13,15 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.spongepowered.mixin'
 
-version = '1.0.2'
+version = '1.0.3'
 group = 'ua.caunt.bungeeforge' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'bungeeforge-1.18.2'
+archivesBaseName = 'bungeeforge-1.19.4'
 
 // Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 minecraft {
-    mappings channel: 'official', version: '1.18.2'
+    mappings channel: 'official', version: '1.19.4'
     runs {
         server {
             workingDirectory project.file('run')
@@ -41,7 +41,7 @@ minecraft {
             workingDirectory project.file('run')
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-            args '--mod', 'examplemod', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--mod', 'bungeeforge', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
                 bungeeforge {
@@ -66,7 +66,7 @@ configurations {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18.2-40.2.1'
+    minecraft 'net.minecraftforge:forge:1.19.4-45.0.43'
 
     compile('org.spongepowered:mixin:0.8.5') {
         exclude module: 'launchwrapper'

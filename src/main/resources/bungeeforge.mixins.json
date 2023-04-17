@@ -4,8 +4,11 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "bungeeforge.refmap.json",
   "mixins": [
+    "network.Connection",
     "network.protocol.handshake.ClientIntentionPacket",
-    "network.protocol.login.ClientboundGameProfilePacket"
+    "network.protocol.login.ServerboundHelloPacket",
+    "server.network.ServerGamePacketListenerImpl",
+    "server.network.ServerLoginPacketListenerImpl"
   ],
   "client": [],
   "minVersion": "0.7"
