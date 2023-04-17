@@ -1,16 +1,13 @@
 package ua.caunt.bungeeforge.mixin.server.network;
 
 import com.mojang.authlib.GameProfile;
-import com.mojang.authlib.properties.PropertyMap;
-import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.Connection;
-import net.minecraft.network.protocol.login.ServerboundHelloPacket;
+import org.objectweb.asm.Opcodes;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.Redirect;
 import ua.caunt.bungeeforge.bridge.network.ConnectionBridge;
 import ua.caunt.bungeeforge.bridge.server.network.ServerLoginPacketListenerImplBridge;
 
@@ -22,26 +19,26 @@ public class ServerLoginPacketListenerImpl implements ServerLoginPacketListenerI
     @Final
     @Shadow
     Connection connection;
-    @Shadow
-    public GameProfile gameProfile;
 
     private static final Pattern PROP_PATTERN = Pattern.compile("\\w{0,16}");
 
-    @Inject(method = "handleHello(Lnet/minecraft/network/protocol/login/ServerboundHelloPacket;)V", at = @At("HEAD"))
-    public void bungee$handleHello(ServerboundHelloPacket p_10047_, CallbackInfo ci) {
+    @Redirect(method = "handleHello(Lnet/minecraft/network/protocol/login/ServerboundHelloPacket;)V", at = @At(value = "FIELD", target = "Lnet/minecraft/server/network/ServerLoginPacketListenerImpl;gameProfile:Lcom/mojang/authlib/GameProfile;", opcode = Opcodes.PUTFIELD))
+    public void bungee$handleHello(net.minecraft.server.network.ServerLoginPacketListenerImpl instance, GameProfile value) {
         var connectionBridge = (ConnectionBridge)bungee$getConnection();
 
-        if (!connectionBridge.bungee$hasSpoofedProfile())
+        if (!connectionBridge.bungee$hasSpoofedProfile()) {
+            instance.gameProfile = value;
             return;
+        }
 
-        gameProfile = new GameProfile(connectionBridge.bungee$getSpoofedId().get(), gameProfile.getName());
+        var gameProfile = new GameProfile(connectionBridge.bungee$getSpoofedId().get(), value.getName());
         var properties = gameProfile.getProperties();
 
         Arrays.stream(connectionBridge.bungee$getSpoofedProperties().get()).filter(property -> PROP_PATTERN.matcher(property.getName()).matches()).forEach(property -> {
             properties.put(property.getName(), property);
         });
 
-        ci.cancel();
+        instance.gameProfile = gameProfile;
     }
 
     @Override

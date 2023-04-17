@@ -2,11 +2,8 @@ package ua.caunt.bungeeforge.mixin.server.network;
 
 import net.minecraft.network.chat.RemoteChatSession;
 import net.minecraft.network.protocol.game.ServerboundChatSessionUpdatePacket;
-import net.minecraft.network.protocol.game.ServerboundCustomPayloadPacket;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.SignatureValidator;
 import net.minecraft.world.entity.player.ProfilePublicKey;
-import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -19,10 +16,6 @@ import java.time.Duration;
 public class ServerGamePacketListenerImpl {
     @Shadow
     private RemoteChatSession chatSession;
-
-    @Final
-    @Shadow
-    private MinecraftServer server;
 
     @Inject(method = "handleChatSessionUpdate(Lnet/minecraft/network/protocol/game/ServerboundChatSessionUpdatePacket;)V", at = @At("HEAD"))
     public void bungee$handleChatSessionUpdate(ServerboundChatSessionUpdatePacket p_253950_, CallbackInfo ci) throws ProfilePublicKey.ValidationException {
