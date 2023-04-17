@@ -38,13 +38,13 @@ public class C00Handshake implements C00HandshakeBridge {
         return Arrays.stream(properties)
                 .filter(packet -> isFmlMarker(packet))
                 .findFirst()
-                .map(property -> chunks[1] + "\0" + property.getValue().split("\u0001")[1] + "\0")
+                .map(property -> chunks[1] + "\0FML\0")
                 .orElseGet(() -> chunks[1]);
     }
 
     private static boolean isFmlMarker(Property property)
     {
-        return Objects.equals(property.getName(), "extraData") && property.getValue().startsWith("\u0001FML");
+        return Objects.equals(property.getName(), "forgeClient") && property.getValue().equals("true");
     }
 
     @Override
