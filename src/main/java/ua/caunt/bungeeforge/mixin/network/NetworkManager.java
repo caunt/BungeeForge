@@ -2,9 +2,15 @@ package ua.caunt.bungeeforge.mixin.network;
 
 
 import com.mojang.authlib.properties.Property;
+import io.netty.channel.ChannelHandlerContext;
+import net.minecraft.util.text.ITextComponent;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import ua.caunt.bungeeforge.bridge.network.NetworkManagerBridge;
 
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.UUID;
 
