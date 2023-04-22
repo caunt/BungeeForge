@@ -13,7 +13,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.spongepowered.mixin'
 
-version = '1.0.3'
+version = '1.0.5'
 group = 'ua.caunt.bungeeforge' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'bungeeforge-1.16.5'
 

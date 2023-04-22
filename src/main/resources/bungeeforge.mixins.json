@@ -4,10 +4,12 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "bungeeforge.refmap.json",
   "mixins": [
+    "network.NetworkManager",
+    "network.NetworkSystem",
+    "network.handshake.ServerHandshakeNetHandler",
     "network.handshake.client.CHandshakePacket",
     "network.login.client.CLoginStartPacket",
-    "network.handshake.ServerHandshakeNetHandler",
-    "network.NetworkManager"
+    "network.play.ServerPlayNetHandler"
   ],
   "client": [],
   "minVersion": "0.7"
