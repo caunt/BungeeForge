@@ -7,7 +7,9 @@ import net.minecraft.world.entity.player.ProfilePublicKey;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.time.Duration;
@@ -25,5 +27,10 @@ public class ServerGamePacketListenerImpl {
         var profilePublicKey = ProfilePublicKey.createValidated(SignatureValidator.NO_VALIDATION, sessionId, remoteChatSessionData.profilePublicKey(), Duration.ZERO);
 
         chatSession = new RemoteChatSession(sessionId, profilePublicKey);
+    }
+
+    @ModifyConstant(method = "tick()V", constant = @Constant(longValue = 15000L))
+    private long bungee$modifyConstant(long value) {
+        return ServerConnectionListener.getReadTimeout() * 1000L;
     }
 }
