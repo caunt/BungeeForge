@@ -1,14 +1,14 @@
 [
 {
   "modid": "${modid}",
-  "name": "Example Mod",
-  "description": "Example placeholder mod.",
+  "name": "BungeeForge",
+  "description": "BungeeForge mod.",
   "version": "${version}",
   "mcversion": "${minecraft_version}",
   "url": "",
   "updateUrl": "",
-  "authorList": ["ExampleDude"],
-  "credits": "The Forge and FML guys, for making this example",
+  "authorList": ["caunt"],
+  "credits": "caunt",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []
