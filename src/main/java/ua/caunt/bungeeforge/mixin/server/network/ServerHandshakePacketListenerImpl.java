@@ -22,6 +22,7 @@ public class ServerHandshakePacketListenerImpl {
         ClientIntentionPacketBridge clientIntentionPacketBridge = (ClientIntentionPacketBridge) p_9975_;
         ConnectionBridge connectionBridge = (ConnectionBridge) connection;
 
+        connectionBridge.bungee$setSpoofedAddress(clientIntentionPacketBridge.bungee$getSpoofedAddress());
         connectionBridge.bungee$setSpoofedId(clientIntentionPacketBridge.bungee$getSpoofedId());
         connectionBridge.bungee$setSpoofedProperties(clientIntentionPacketBridge.bungee$getSpoofedProperties());
     }
