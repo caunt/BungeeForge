@@ -19,7 +19,7 @@ public class ServerHandshakePacketListenerImpl {
 
     @Inject(method = "handleIntention(Lnet/minecraft/network/protocol/handshake/ClientIntentionPacket;)V", at = @At("HEAD"))
     public void bungee$handleIntention(ClientIntentionPacket p_9975_, CallbackInfo ci) {
-        ClientIntentionPacketBridge clientIntentionPacketBridge = (ClientIntentionPacketBridge) p_9975_;
+        ClientIntentionPacketBridge clientIntentionPacketBridge = (ClientIntentionPacketBridge) (Object) p_9975_;
         ConnectionBridge connectionBridge = (ConnectionBridge) connection;
 
         connectionBridge.bungee$setSpoofedAddress(clientIntentionPacketBridge.bungee$getSpoofedAddress());
