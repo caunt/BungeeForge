@@ -16,6 +16,7 @@ import java.util.UUID;
 
 @Mixin(net.minecraft.network.protocol.handshake.ClientIntentionPacket.class)
 public class ClientIntentionPacket implements ClientIntentionPacketBridge {
+    private String spoofedAddress;
     private UUID spoofedId;
     private Property[] spoofedProperties;
 
@@ -31,6 +32,7 @@ public class ClientIntentionPacket implements ClientIntentionPacketBridge {
 
         var properties = gson.fromJson(chunks[3], Property[].class);
 
+        spoofedAddress = chunks[1];
         spoofedId = UUIDTypeAdapter.fromString(chunks[2]);
         spoofedProperties = Arrays.stream(properties)
                 .filter(packet -> !isFmlMarker(packet))
@@ -46,6 +48,11 @@ public class ClientIntentionPacket implements ClientIntentionPacketBridge {
     private static boolean isFmlMarker(Property property)
     {
         return Objects.equals(property.getName(), "extraData") && property.getValue().startsWith("\u0001FML");
+    }
+
+    @Override
+    public String bungee$getSpoofedAddress() {
+        return spoofedAddress;
     }
 
     @Override

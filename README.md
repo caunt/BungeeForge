@@ -14,3 +14,15 @@ This modification requires both Proxy and Forge to be compatible. Unfortunately,
 
 ## Other versions
 Other Forge versions can be supported as well. Please feel free to create a Issue and ask.
+
+# Support This Project
+
+If you find this project helpful and would like to support its development, consider making a donation. Your contribution helps maintain and improve the project.
+
+- **[Donate with PayPal](https://www.paypal.com/donate/?hosted_button_id=BH7PCQXDM8EKN)**: You can use PayPal to make a one-time or recurring donation.
+
+- **Bitcoin**: If you prefer cryptocurrency, you can send Bitcoin to the following address: `bc1qt0j847jw44sfhd9qvhwyxp0hd9nfu7wcfnm9hs`
+
+- **Ethereum**: For Ethereum and ERC20 donations, use the following address: `0x9D9c94bD50DA22a486a6ba6845f3c268DCc8CbE4`
+
+Your support is greatly appreciated!
