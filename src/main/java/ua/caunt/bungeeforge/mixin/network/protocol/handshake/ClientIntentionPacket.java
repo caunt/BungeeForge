@@ -29,8 +29,6 @@ public class ClientIntentionPacket implements ClientIntentionPacketBridge {
         if (chunks.length <= 2)
             return data;
 
-        System.out.println(String.join(", ", chunks));
-
         var properties = gson.fromJson(chunks[3], Property[].class);
 
         spoofedAddress = chunks[1];
