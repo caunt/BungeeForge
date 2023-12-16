@@ -6,7 +6,7 @@ apply plugin: 'forge'
 
 ext.publishDir = project.multiproject_structure.toBoolean() ? "${projectDir}/../publish" : "${projectDir}/publish"
 
-project.version = "1.0.5"
+project.version = "1.0.6"
 group = project.group
 archivesBaseName = "${project.archives_base}-1.7.10"
 
