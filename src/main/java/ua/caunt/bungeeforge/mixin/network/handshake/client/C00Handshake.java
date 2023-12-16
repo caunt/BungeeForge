@@ -15,6 +15,7 @@ import java.util.UUID;
 
 @Mixin(net.minecraft.network.handshake.client.C00Handshake.class)
 public class C00Handshake implements C00HandshakeBridge {
+    private String spoofedAddress;
     private UUID spoofedId;
     private Property[] spoofedProperties;
 
@@ -30,6 +31,7 @@ public class C00Handshake implements C00HandshakeBridge {
 
         Property[] properties = gson.fromJson(chunks[3], Property[].class);
 
+        spoofedAddress = chunks[1];
         spoofedId = UUIDTypeAdapter.fromString(chunks[2]);
         spoofedProperties = Arrays.stream(properties)
                 .filter(packet -> !isFmlMarker(packet))
@@ -45,6 +47,11 @@ public class C00Handshake implements C00HandshakeBridge {
     private static boolean isFmlMarker(Property property)
     {
         return Objects.equals(property.getName(), "forgeClient") && property.getValue().equals("true");
+    }
+
+    @Override
+    public String bungee$getSpoofedAddress() {
+        return spoofedAddress;
     }
 
     @Override
