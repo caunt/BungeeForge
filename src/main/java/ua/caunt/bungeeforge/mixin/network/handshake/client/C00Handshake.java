@@ -14,6 +14,7 @@ import java.util.UUID;
 
 @Mixin(net.minecraft.network.handshake.client.C00Handshake.class)
 public class C00Handshake implements C00HandshakeBridge {
+    private String spoofedAddress;
     private UUID spoofedId;
     private Property[] spoofedProperties;
 
@@ -27,10 +28,16 @@ public class C00Handshake implements C00HandshakeBridge {
         if (chunks.length <= 2)
             return data;
 
+        spoofedAddress = chunks[1];
         spoofedId = UUIDTypeAdapter.fromString(chunks[2]);
         spoofedProperties = gson.fromJson(chunks[3], Property[].class);
 
         return chunks[1];
+    }
+
+    @Override
+    public String bungee$getSpoofedAddress() {
+        return spoofedAddress;
     }
 
     @Override

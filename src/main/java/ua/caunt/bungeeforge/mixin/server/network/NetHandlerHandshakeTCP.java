@@ -22,6 +22,7 @@ public class NetHandlerHandshakeTCP {
         C00HandshakeBridge handshakeBridge = (C00HandshakeBridge) packetIn;
         NetworkManagerBridge networkManagerBridge = (NetworkManagerBridge) field_147386_b;
 
+        networkManagerBridge.bungee$setSpoofedAddress(handshakeBridge.bungee$getSpoofedAddress());
         networkManagerBridge.bungee$setSpoofedId(handshakeBridge.bungee$getSpoofedId());
         networkManagerBridge.bungee$setSpoofedProperties(handshakeBridge.bungee$getSpoofedProperties());
     }
