@@ -20,7 +20,9 @@ public class Connection implements ConnectionBridge {
     private Property[] spoofedProperties;
 
     @Override
-    public void bungee$setSpoofedAddress(String spoofedAddress) { this.spoofedAddress = spoofedAddress; }
+    public void bungee$setSpoofedAddress(String spoofedAddress) {
+        this.spoofedAddress = spoofedAddress;
+    }
 
     @Override
     public void bungee$setSpoofedId(UUID spoofedId) {
@@ -28,10 +30,14 @@ public class Connection implements ConnectionBridge {
     }
 
     @Override
-    public void bungee$setSpoofedProperties(Property[] spoofedProperties) { this.spoofedProperties = spoofedProperties; }
+    public void bungee$setSpoofedProperties(Property[] spoofedProperties) {
+        this.spoofedProperties = spoofedProperties;
+    }
 
     @Override
-    public Optional<String> bungee$getSpoofedAddress() { return Optional.ofNullable(spoofedAddress); }
+    public Optional<String> bungee$getSpoofedAddress() {
+        return Optional.ofNullable(spoofedAddress);
+    }
 
     @Override
     public Optional<UUID> bungee$getSpoofedId() {

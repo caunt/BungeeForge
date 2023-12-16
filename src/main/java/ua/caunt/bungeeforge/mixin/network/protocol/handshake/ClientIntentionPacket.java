@@ -50,7 +50,9 @@ public class ClientIntentionPacket implements ClientIntentionPacketBridge {
     }
 
     @Override
-    public String bungee$getSpoofedAddress() { return spoofedAddress; }
+    public String bungee$getSpoofedAddress() {
+        return spoofedAddress;
+    }
 
     @Override
     public UUID bungee$getSpoofedId() {
