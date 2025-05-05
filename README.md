@@ -16,4 +16,4 @@ This modification requires both Proxy and Forge to be compatible. Unfortunately,
 Other Forge versions can be supported as well. Please feel free to create a Issue and ask.
 
 # Void Proxy
-Take a look at [**Void**](https://github.com/caunt/Void) Proxy as alternative to BungeeCord and Velocity.  
+Take a look at [**Void Proxy**](https://github.com/caunt/Void) as alternative to BungeeCord and Velocity.  
