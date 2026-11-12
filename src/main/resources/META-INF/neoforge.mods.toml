@@ -1,0 +1,11 @@
+modLoader = "javafml"
+loaderVersion = "[1,)"
+license = "All Rights Reserved"
+
+[[mods]]
+modId = "bungeeforge"
+version = "${version}"
+displayName = "BungeeForge"
+authors = "caunt"
+displayTest = "IGNORE_SERVER_VERSION"
+description = '''BungeeCord (legacy) player info forwarding for Forge servers'''

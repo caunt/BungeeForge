@@ -1,0 +1,10 @@
+[
+  {
+    "modid": "bungeeforge",
+    "name": "BungeeForge",
+    "description": "BungeeCord (legacy) player info forwarding for Forge servers",
+    "version": "${version}",
+    "url": "https://github.com/caunt/BungeeForge",
+    "authorList": ["caunt"]
+  }
+]
